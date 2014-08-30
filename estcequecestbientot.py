@@ -3,19 +3,16 @@
 	Using the flask framework
 """
 from flask import Flask
-from flask import render_template
+from flask import render_template, redirect, url_for
+from messages import Messages
 import os.path
 
 app = Flask(__name__)
 
 # import the messages
-customMessageFile = 'messagescustom.py'
-if os.path.isfile(customMessageFile):
-	from messagescustom import MyMessages
-else:
-	from messagesexemple import MyMessages
+messageFile = 'messages_custom.yaml' if os.path.isfile('messages_custom.yaml') else 'messages.yaml'
 
-m = MyMessages()
+m = Messages(messageFile)
 
 # We only respond to /
 @app.route('/')
@@ -23,6 +20,11 @@ def estcequecestbientot():
 	title = m.getTitle()
 	(hours, minutes, message) = m.getDateAndMessage()
 	return render_template('estcequecestbientot.html', title=title, message=message, hours=hours, minutes=minutes)
+
+@app.route('/reload')
+def reload():
+	m.load()
+	return redirect('/')
 
 # run !
 if __name__ == '__main__':

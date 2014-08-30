@@ -4,14 +4,32 @@
 
 from datetime import datetime
 from collections import OrderedDict
+import yaml
 
 class Messages():
 	title = "Configure your own title please !"
 	messages = {'00:00' : "Configure your own messages please !"}
 
-	def __init__(self):
+	def __init__(self, messagesFile):
+		self.messagesFile = messagesFile
+		self.load()
+
+	# initialise from a file and create messages dict from it
+	def load(self):
+		self.loadVariables(self.messagesFile)
+		self.sortedMessages = self.createMessagesDict(self.messages)
+
+	# load conf file and instanciate title and messages
+	def loadVariables(self, messagesFile):
+		f = open(messagesFile, 'r')
+		variables = yaml.load(f)
+		self.title = variables['title']
+		self.messages = variables['messages']
+
+	# Create a ordered dict from dict of messages 
+	def createMessagesDict(self, messages):
 		# Convert keys to secondes
-		withSecondes = [ (self.timeToSecondes(k),v) for k,v in self.messages.items() ]
+		withSecondes = [ (self.timeToSecondes(k),v) for k,v in messages.items() ]
 
 		# Order the keys
 		ordered = sorted(withSecondes, key=lambda k: k[0])
@@ -29,10 +47,8 @@ class Messages():
 			for index in range(0, len(ordered))
 		]
 
-		# The messages are indexed by sorted seconds keys
-		self.sortedMessages = OrderedDict(shifted)
-		#for t, m in self.sortedMessages.items():
-			#print(t,m)
+		# Return an ordered dict
+		return OrderedDict(shifted)
 
 	# Get the title of the messages
 	def getTitle(self):
@@ -51,7 +67,7 @@ class Messages():
 			)
 		)
 
-	# Get the message for specific time
+	# Get the message for specific time (in secondes)
 	def getMessage(self, forTime):
 		if forTime >= 3600*24:
 			forTime = 3600*24 - 1
