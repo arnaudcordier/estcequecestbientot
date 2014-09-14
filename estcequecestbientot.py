@@ -4,32 +4,27 @@
 """
 from flask import Flask
 from flask import render_template, redirect, url_for
-from messages import Messages
-import os.path
+from messageApp.messageApp import MessageApp
 
 app = Flask(__name__)
 
-# import the messages
-messageFile = 'messages_custom.yaml' if os.path.isfile('messages_custom.yaml') else 'messages.yaml'
-
-m = Messages(messageFile)
+ma = MessageApp();
+ma.loadMessage(('noon'))
 
 # We only respond to /
 @app.route('/')
 def estcequecestbientot():
-	title = m.getTitle()
-	(hours, minutes, message) = m.getDateAndMessage()
-	return render_template('estcequecestbientot.html', title=title, message=message, hours=hours, minutes=minutes)
+	messages = ma.getMessages()
+	return render_template('estcequecestbientot.html', messages=messages)
 
 @app.route('/reload')
 def reload():
-	m.load()
+	ma.reload()
 	return redirect('/')
 
 # run !
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=9000, debug=True)
-
 
 '''
 Similar projects

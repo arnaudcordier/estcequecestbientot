@@ -1,13 +1,14 @@
 <!doctype html>
 <html>
 	<head>
-		<title>{{ title }}</title>
+		<title>Est-ce que c'est bientôt ?</title>
 	</head>
 	<body>
+		{% for title, message in messages %}
 		<h1>{{ title }}</h1>
 		<p>
-			Il est {{ hours }} heures {{ minutes }} minutes.<br/>
 			{{ message }}
 		<p>
+		{% endfor %}
 	</body>
 </html>

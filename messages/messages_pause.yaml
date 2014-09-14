@@ -1,0 +1,28 @@
+# Data exemple for messages
+# copy this file to messages_custom.yaml to make your own
+# cp messages.yaml messages_custom.yaml
+
+title   : Est-ce que c'est bientôt la pause ?
+default : Non !
+messages:
+ - interval : '* * * 1-5 * *'
+   messages:
+    '02:00' : Si tu ne dors pas, c'est un congé qu'il va falloir prendre.
+    '06:00' : Attend au moins d'être au boulot.
+    '09:00' : Pas encore.
+    '09:50' : Non, mais très très bientôt.
+    '10:00' : Oui maintenant :)
+    '10:30' : Non c'est fini.
+    '11:00' : Pas encore patiente
+    '14:50' : Non, mais très très bientôt.
+    '15:00' : Oui maintenant \o/
+    '15:20' : Non c'est fini.
+    '15:40' : Non c'est fini, mais c'est bientôt la quille.
+    '17:30' : Sort d'ici vite fait !
+    '18:00' : Attend demain !
+    '19:00' : Non mais c'est l'heure de l'apéro
+    '20:30' : Attend demain !
+    '23:00' : Mais dort, voyons.
+ - interval : '* * * 6-7 * *'
+   messages :
+    '00:00' : C'est le week-end gros naze !

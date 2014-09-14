@@ -1,0 +1,16 @@
+# Data exemple for messages
+# copy this file to messages_custom.yaml to make your own
+# cp messages.yaml messages_custom.yaml
+
+title   : Est-ce que c'est bientôt l'apéro ?
+default : Non !
+messages:
+ - interval : '* * * 1-5 * *'
+   messages :
+    '18:15' : Oui bientôt
+    '19:00' : Oui, c'est l'apéro !
+    '21:00' : Attend demain
+ - interval : '* * * 6-7 * *'
+   messages :
+    '12:00' : Oui, c'est l'apéro !
+    '23:00' : Attend demain
