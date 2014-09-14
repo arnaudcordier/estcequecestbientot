@@ -4,13 +4,13 @@
 
 class MessageList():
 	def __init__(self, messages):
-		self.strings = messages
+		self._strings = messages
 		# Convert keys to units
 		withUnits = [ (self._timeToUnits(time), text) for time, text in messages ]
-		self.messages = list(reversed(sorted(withUnits)))
+		self._messages = list(reversed(sorted(withUnits)))
 
 	def getMessage(self, unit):
-		for (time, message) in self.messages:
+		for (time, message) in self._messages:
 			if time <= unit:
 				return message
 		return None
@@ -23,6 +23,6 @@ class MessageList():
 
 	def __str__(self):
 		txt = ''
-		for hours, message in self.strings:
+		for hours, message in self._strings:
 			txt = txt + "\n" + hours + " " + message
 		return txt

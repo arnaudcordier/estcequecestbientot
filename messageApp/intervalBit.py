@@ -8,15 +8,15 @@
 
 class IntervalBit():
 	def __init__(self, intervalString, position):
-		self.intervalString = intervalString
-		self.name           = BitsDefinition.getName(position)
-		self.boundary       = BitsDefinition.getBoundary(position)
-		self.intervals      = self._intervalList(intervalString)
-		self.duration       = BitsDefinition.getDuration(position)
+		self._intervalString = intervalString
+		self._name           = BitsDefinition.getName(position)
+		self._boundary       = BitsDefinition.getBoundary(position)
+		self._intervals      = self._intervalList(intervalString)
+		self._duration       = BitsDefinition.getDuration(position)
 
 	# Check if a given interger can fit in boundaries
 	def doesItFit(self, timeInt):
-		for bits in self.intervals:
+		for bits in self._intervals:
 			if (bits[0] == '*') or (bits[0] <= timeInt and timeInt <= bits[1]):
 				return bits
 		return None
@@ -34,15 +34,15 @@ class IntervalBit():
 			if len(bit) == 1:
 				bit.append(int(bits))
 			# check if it fits in predefined boundaries
-			if (self.boundary[0] <= bit[0] and bit[0] <= self.boundary[1] and
-				  self.boundary[0] <= bit[1] and bit[1] <= self.boundary[1]):
+			if (self._boundary[0] <= bit[0] and bit[0] <= self._boundary[1] and
+				  self._boundary[0] <= bit[1] and bit[1] <= self._boundary[1]):
 				intervals.append(bit)
 			else:
-				print(str(self), bits, "could not fit in boundary", str(self.boundary))
+				print(str(self), bits, "could not fit in boundary", str(self._boundary))
 		return intervals
 
 	def __str__(self):
-		return "<" + self.name + ":" + self.intervalString + ">"
+		return "<" + self._name + ":" + self._intervalString + ">"
 
 
 class BitsDefinition():

@@ -54,7 +54,7 @@ def test_bitFit_all():
 
 def test_bitFit_eliminate_out_of_boundary():
 	a = IntervalBit('52-56,57,89-95', 6)
-	assert a.intervals == [[52,56], [57,57]]
+	assert a._intervals == [[52,56], [57,57]]
 
 # Test Interval
 from messageApp.intervals import Interval

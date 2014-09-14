@@ -13,8 +13,8 @@ from messageApp.messageList import MessageList
 
 class Interval():
 	def __init__(self, interval, messages,  timeIsRelative = False):
-		self.intervals      = self._createInterval(interval)
-		self.messages       = MessageList(messages)
+		self._intervals      = self._createInterval(interval)
+		self._messages       = MessageList(messages)
 		self.timeIsRelative = timeIsRelative
 
 	def getMessage(self, time):
@@ -24,7 +24,7 @@ class Interval():
 			now = times[5] + times[4] * 60
 			if self.timeIsRelative:
 				now = now + self._getTimeOffset(itFits)
-			return self.messages.getMessage(now)
+			return self._messages.getMessage(now)
  
 	def _createInterval(self, interval):
 		intervals = []
@@ -41,13 +41,13 @@ class Interval():
 
 	def _doesItFit(self, times):
 		fitingInterval = []
-		if len(times) == len(self.intervals):
+		if len(times) == len(self._intervals):
 			for i in range(len(times)):
-				itFits = self.intervals[i].doesItFit(times[i])
+				itFits = self._intervals[i].doesItFit(times[i])
 				if itFits:
 					fitingInterval.append(itFits)
 				else:
-					print(str(times[i]), "does nots fit in", self.intervals[i])
+					print(str(times[i]), "does nots fit in", self._intervals[i])
 					return None
 			return fitingInterval
 		return None
@@ -57,7 +57,7 @@ class Interval():
 
 	def __str__(self):
 		txt = ''
-		for bit in self.intervals:
+		for bit in self._intervals:
 			txt = txt + str(bit) + " "
-		txt += str(self.messages)
+		txt += str(self._messages)
 		return txt
