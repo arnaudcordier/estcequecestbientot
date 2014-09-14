@@ -23,6 +23,14 @@ class MessageApp():
 			else:
 				self.messages[name].reload()
 
+	def unloadMessage(self, names):
+		if type(names) is str:
+			names = names,
+		
+		for name in names:
+			if (name in self.messages):
+				self.messages.pop(name)
+
 	def reload(self):
 		for name, messages in self.messages.items():
 			messages.reload()

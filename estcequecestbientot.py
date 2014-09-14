@@ -9,13 +9,24 @@ from messageApp.messageApp import MessageApp
 app = Flask(__name__)
 
 ma = MessageApp();
-ma.loadMessage(('noon'))
 
 # We only respond to /
 @app.route('/')
 def estcequecestbientot():
 	messages = ma.getMessages()
 	return render_template('estcequecestbientot.html', messages=messages)
+
+@app.route('/load/<name>')
+def load(name):
+	names = name.split(',')
+	ma.loadMessage(names)
+	return redirect('/')
+
+@app.route('/unload/<name>')
+def unload(name):
+	names = name.split(',')
+	ma.unloadMessage(names)
+	return redirect('/')
 
 @app.route('/reload')
 def reload():
