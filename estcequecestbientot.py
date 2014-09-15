@@ -33,6 +33,13 @@ def reload():
 	ma.reload()
 	return redirect('/')
 
+@app.route('/list')
+def list():
+	notloadedList, loadedList = ma.listMessages()
+	loadedList    = [(url_for('unload', name=name), name) for name in loadedList]
+	notloadedList = [(url_for('load',   name=name), name) for name in notloadedList]
+	return render_template('list.html', loaded=loadedList, notloaded=notloadedList)
+
 # run !
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=9000, debug=True)

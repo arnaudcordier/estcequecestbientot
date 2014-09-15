@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Est-ce que c'est bientôt ? Charger les messages !</title>
+	</head>
+	<body>
+		{% if loaded %}
+			<h1>Unload theses messages</h1>
+			<ul>
+			{% for url, name in loaded %}
+				<li>
+					<a href="{{ url }}">{{ name }}</a>
+				</li>
+			{% endfor %}
+			</ul>
+		{% endif %}
+		{% if notloaded %}
+			<h1>Load theses messages</h1>
+			<ul>
+			{% for url, name in notloaded %}
+				<li>
+					<a href="{{ url }}">{{ name }}</a>
+				</li>
+			{% endfor %}
+			</ul>
+		{% endif %}
+	</body>
+</html>
