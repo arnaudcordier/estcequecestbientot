@@ -10,29 +10,33 @@ app = Flask(__name__)
 
 ma = MessageApp();
 
-# We only respond to /
+# show current messages
 @app.route('/')
 def estcequecestbientot():
 	messages = ma.getMessages()
 	return render_template('estcequecestbientot.html', messages=messages)
 
+# load a message
 @app.route('/load/<name>')
 def load(name):
 	names = name.split(',')
 	ma.loadMessage(names)
 	return redirect('/')
 
+# unload
 @app.route('/unload/<name>')
 def unload(name):
 	names = name.split(',')
 	ma.unloadMessage(names)
 	return redirect('/')
 
+# reload current messages from file
 @app.route('/reload')
 def reload():
 	ma.reload()
 	return redirect('/')
 
+# list available messages
 @app.route('/list')
 def list():
 	notloadedList, loadedList = ma.listMessages()
@@ -45,7 +49,11 @@ if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=9000, debug=True)
 
 '''
-Similar projects
+Purpose:
+display a message depending of the time of the day
+could display a message depending of the day, date, day of week, year…
+
+Similar projects:
  https://github.com/tontonDuPirox/estcequecestbientot (php)
  https://github.com/hughevans/isitcoffeetime.com (ruby)
  https://github.com/isitchristmas (js)
@@ -59,17 +67,12 @@ Similar projects
  https://github.com/jingweno/isittheday.com (ruby)
  https://github.com/stilldavid/isittimetogohome.com (php)
 
-purpose
- display a message depending of the time of the day
- could display a message depending of the day, date, day of week, year…
- 
-synopsis
- load array of messages and date
- get the current date/time
- find the message corresponding to the current time
- display the message
- 
-sites
+TODO:
+ - reverse message intervals, in order to write exceptional intervals at the bottom of the file (maybe not a good idea)
+ - file system handling should only be in messageApp class
+ - find a way to configure app at loading time
+
+Similar web sites:
  http://estcequecestbientot.fr/
   http://estcequecestbientotlheuredemanger.fr/
   http://estcequecestbientotlapero.fr/
