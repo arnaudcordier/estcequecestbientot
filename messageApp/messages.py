@@ -24,7 +24,7 @@ class Messages():
 				return (self.title, message)
 		
 		if self.defaultMessage:
-			return (self.title, defaultMessage)
+			return (self.title, self.defaultMessage)
 		
 		return None
 
