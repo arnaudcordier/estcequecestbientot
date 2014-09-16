@@ -66,3 +66,41 @@ def test_Messages_getMessage():
 	estcequecestbientot = m.getMessage( datetime(2013, 12, 13, 23, 53) )
 	print(estcequecestbientot)
 	assert estcequecestbientot == ('montitre', 'message3')
+
+
+# test MessageApp
+from messageApp.messageApp import MessageApp
+from datetime import datetime
+
+m = MessageApp('messages', "messages_")
+
+def test_loadMessages():
+	m.loadMessage('object')
+	_, l = m.listMessages()
+	print(l)
+	assert l == ['object']
+
+def test_unloadMessage():
+	m.unloadMessage('object')
+	_, l = m.listMessages()
+	print(l)
+	assert l == []
+	
+# def test_listMessages() # allready done
+
+def test_reload(): # does not realy test reload of file
+	m.loadMessage('object')
+	_, l1 = m.listMessages()
+	m.reload()
+	_, l2 = m.listMessages()
+	assert l1 == l2
+
+#def test_getMessages(): # too tricky
+
+def test_getMessagesAtTime():
+	m.loadMessage('object')
+	estcequecestbientot = m.getMessagesAtTime(datetime(2013, 12, 13, 23, 53))
+	print(estcequecestbientot)
+	assert estcequecestbientot == [('montitre', 'message3')]
+
+
