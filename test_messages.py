@@ -29,6 +29,7 @@ def test_bitFit_eliminate_out_of_boundary():
 	a = IntervalBit('52-56,57,89-95', 6)
 	assert a._intervals == [[52,56], [57,57]]
 
+
 # Test Interval
 from messageApp.intervals import Interval
 from datetime import datetime
@@ -54,3 +55,14 @@ def test_interval_message_2():
 
 def test_interval_message_3():
 	assert i.getMessage(datetime(2013, 12, 13, 9, 12)) == 'message4'
+
+
+# Test Messages
+from messageApp.messages import Messages
+from datetime import datetime
+
+def test_Messages_getMessage():
+	m = Messages('messages/messages_object.yaml')
+	estcequecestbientot = m.getMessage( datetime(2013, 12, 13, 23, 53) )
+	print(estcequecestbientot)
+	assert estcequecestbientot == ('montitre', 'message3')

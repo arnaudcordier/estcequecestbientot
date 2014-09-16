@@ -1,0 +1,26 @@
+# Data definition for messages
+# copy this file to messages_custom.yaml to make your own
+# cp messages.yaml messages_custom.yaml
+
+title   : montitre
+default : mondefaut
+messages:
+ - interval : '* * 13-22 5-7 09-20,23 *'
+   messages :
+    '10:30' : message1
+    '11:45' : message2
+    '13:12' : message3
+    '09:12' : message4
+# vendredi à quinze heures
+ - interval : '* * * 5 15 25'
+   relative : True
+   messages :
+    '00:00' : quinze heure vingt cinq
+# la semaine
+ - interval : '* * * 1-5 * *'
+   messages:
+    '01:00' : semaine
+# le week-end
+ - interval : '* * * 6-7 * *'
+   messages :
+    '00:00' : weekend
