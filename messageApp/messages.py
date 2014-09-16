@@ -1,22 +1,31 @@
 """
- There should be a insightful documentation here
+ Return a (title, message) given a datetime object
 """
 
 import yaml
 from messageApp.intervals import Interval
 
 class Messages():
+	# instanciate with a messageObject like defined in messages_object.yaml
 	def __init__(self, messagesFile):
 		self.load(messagesFile)
+#TODO
+#set _title and _default
+#use ['messages'] to create _intervals = [Interval]
 
+#TODO no need
 	def load(self, messagesFile):
 		self.messagesFile = messagesFile
 		self._populateObject(self.messagesFile)
 
+#TODO no need
 	# initialise from a file and create messages dict from it
 	def reload(self):
 		self.load(self.messagesFile)
 
+	# return ((string) title, (string) message) given a datetime object
+	# _default if no message
+	# None on failure
 	def getMessage(self, time):
 		for interval in self.intervals:
 			message = interval.getMessage(time)
@@ -28,7 +37,8 @@ class Messages():
 		
 		return None
 
-	# load conf file and instanciate title and Intervals
+#TODO
+	# set _intervals an [ (object) Interval list ]
 	def _populateObject(self, messagesFile):
 		f = open(messagesFile, 'r')
 		variables = yaml.load(f)
