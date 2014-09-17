@@ -37,7 +37,7 @@ class MessageApp():
 			messageNames = (messageNames, )
 		for name in messageNames:
 			messageObject = self._getMessageObject(name)
-			if name:
+			if messageObject:
 				self._loadedMessages[name] = Messages(messageObject)
 
 	# given a (string) messageNames (a , separate list)
