@@ -32,7 +32,6 @@ class MessageApp():
 	# given a (string) messageNames (a , separate list)
 	# [re]-instanciate some Messages in _loadedMessages[] with it
 	def loadMessage(self, messageNames):
-		#TODO: do not loose the order of the messages and write a TEST for it !
 		if type(messageNames) is str:
 			messageNames = (messageNames, )
 		for name in messageNames:

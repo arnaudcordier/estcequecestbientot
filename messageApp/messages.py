@@ -13,8 +13,8 @@ class Messages():
 
 	# given a datetime object
 	# return an estcequecestbientot : ((string) _title, (string) message)
-	# (_title, _defaultMessage) if no message at that time
-	# None if no _defaultMessage #TODO TEST that
+	# (_title, _defaultMessage) if no message at that datetime
+	# None if no _defaultMessage
 	def getMessage(self, time):
 		for interval in self._intervals:
 			message = interval.getMessage(time)

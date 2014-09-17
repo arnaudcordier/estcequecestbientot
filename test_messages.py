@@ -58,6 +58,7 @@ def test_Interval_getMessage_not():
 
 
 # Test Messages
+#TODO test empty if no default message
 from messageApp.messages import Messages
 from datetime import datetime
 import yaml
@@ -71,6 +72,8 @@ def test_Messages_getMessage():
 	assert estcequecestbientot == ('montitre', 'message3')
 
 # test MessageApp
+#TODO test no loose of the order of the messages
+#TODO test load / unload of unknown named Messages
 from messageApp.messageApp import MessageApp
 from datetime import datetime
 
@@ -90,7 +93,7 @@ def test_MessageApp_unloadMessage():
 
 # def test_listMessages() # allready done
 
-def test_MessageApp_reload(): # does not realy test reload of file
+def test_MessageApp_reload(): #TODO realy test reload of file !
 	m.loadMessage('object')
 	_, l1 = m.listMessages()
 	m.reload()

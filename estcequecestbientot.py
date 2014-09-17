@@ -67,9 +67,13 @@ Similar projects:
  https://github.com/jingweno/isittheday.com (ruby)
  https://github.com/stilldavid/isittimetogohome.com (php)
 
-TODO:
+TODO (s):
  - reverse message intervals, in order to write exceptional intervals at the bottom of the file (maybe not a good idea)
  - find a way to configure app at loading time
+ - implement relative intervals
+ - protect load / unload / list with login/password
+ - take care of time zone
+ - implement tz stamped messageObject
 
 DONE:
  - file system handling should only be in messageApp class
