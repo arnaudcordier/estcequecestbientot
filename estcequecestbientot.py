@@ -69,8 +69,10 @@ Similar projects:
 
 TODO:
  - reverse message intervals, in order to write exceptional intervals at the bottom of the file (maybe not a good idea)
- - file system handling should only be in messageApp class
  - find a way to configure app at loading time
+
+DONE:
+ - file system handling should only be in messageApp class
 
 Similar web sites:
  http://estcequecestbientot.fr/

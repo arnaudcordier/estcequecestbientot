@@ -60,9 +60,12 @@ def test_interval_message_3():
 # Test Messages
 from messageApp.messages import Messages
 from datetime import datetime
+import yaml
 
 def test_Messages_getMessage():
-	m = Messages('messages/messages_object.yaml')
+	f = open('messages/messages_object.yaml', 'r')
+	y = yaml.load(f)
+	m = Messages(y)
 	estcequecestbientot = m.getMessage( datetime(2013, 12, 13, 23, 53) )
 	print(estcequecestbientot)
 	assert estcequecestbientot == ('montitre', 'message3')
